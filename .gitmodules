@@ -1,0 +1,6 @@
+[submodule "llvm"]
+	path = "llvm"
+	url = https://github.com/bentokun/llvm.git
+[submodule "clang"]
+	path = "clang"
+	url = https://github.com/bentokun/clang.git
