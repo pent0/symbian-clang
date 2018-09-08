@@ -1,0 +1,7 @@
+#{"epoctest"},(0xEF764098),1,0,0
+
+%{"Vendor-EN"}
+
+:"Vendor"
+
+"epoctest.exe"   -"!:\sys\bin\epoctest.exe"
