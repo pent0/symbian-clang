@@ -1,7 +1,12 @@
 Symbian Toolchain includes the lastest compiler and techniques that help you
 in Symbian C++ development. Including in this are:
 - Clang (8.0.0) with support for Symbian target ELF (arm-nokia-symbian-eabi)
+- LLVM (8.0.0) with support for Symbian target.
 - CMake modules that help you easily add and make your executable, make an SIS package.
+
+## Support:
+- Only EKA2 are supported at the moment. Not all macros are defined yet (mostly Symbian libstdcxx macros), so
+you may get compile error while compile with standard c++ header.
 
 ## Requirements:
 - SDK installed. On Linux, install it using Wine. Only the native Symbian link libraries
@@ -18,20 +23,19 @@ have it, you can specified the root through the compiler argument: **--epocroot=
 to get *libsupc++* and *libgcc*, but this should be decrepated.
 
 ## Symbian vs morden EABI exception:
-- Due to GCC issue, GCCE only supports with DWARF exception handling, while ARMCC supports EHABI(?).
-To compatible with morden compiler, a newer binutils and libgcc must be provided. GCC 4.x binutil for
-Symbian is needed.
+- Due to GCC issue (i think it's because libgcc doesn't support EHABI), GCCE only supports with DWARF exception handling, while ARMCC supports EHABI(?).
+- To compatible with morden compiler, a newer binutils and libgcc must be provided. GCC 4.x binutil for Symbian is needed.
 - Clang will build EPOC dll/executable with libgcc.a and libgcc_eh.a
 
 ## Building
+- Clone clang to /path/to/llvm/tools/clang
 - Make LLVM's cmakelist and make clang (llvm/tools/clang)
-- After that, run build_unwind script. A libunwind.a should be procedued in **libunwind/build**
 - The install folder contains clang executable after build. Put that anywhere you want
 - Next, create two environment variable: EPOCROOT (points to the SDK folder) and EPOCLIBSEARCHDIR (CSL toolchain
 libraries folder). 
-- Copy libunwind.a into the CSL toolchain libraries folder.
-- Try to build the example to see if its work. Note that export CC and export CXX must point to the Clang exectable
-that you just build.
+- Try to run build.bat. It should procedures two SIS in *sis* folder. Notice that:
+    - CMake module will searchs for dso libs (use for elf2e32), by getting the *EPOCROOT* environment variable.
+    - Makesis *-d* option, directory path must be joined with *-d*, for e.g: **-dC:\ProgramFiles\etc\**
 
 ## Native usage of Clang with CMake on Windows
 - It sucks. I don't make a build file on other platforms is because it doesn't have problem with vanilla clang like on Windows.
