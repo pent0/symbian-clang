@@ -9,7 +9,10 @@ function(add_epoc_arm_executable ENAME UID3 SID SOURCE)
 			TARGET ${ENAME}
 			POST_BUILD
 			COMMAND elf2e32 --elfinput=${ENAME} --uid1=268435578 --uid3=${UID3} --sid=${SID} --output=${ENAME}.exe 
-                    --libpath="$ENV{EPOCROOT}/epoc32/release/armv5/lib/" --libpath="$ENV{EPOCROOT}/epoc32/release/armv6/lib/")
+                    --libpath="$ENV{EPOCROOT}/epoc32/release/armv5/lib/" --libpath="$ENV{EPOCROOT}/epoc32/release/armv6/lib/"
+                    --defoutput="${ENAME}.def"
+                    --dso="${ENAME}.dso"
+                    --linkas="${ENAME}")
 endfunction()
 
 # Epoc ARM
