@@ -4,3 +4,6 @@
 [submodule "clang"]
 	path = "clang"
 	url = https://github.com/bentokun/clang.git
+[submodule "elf2e32"]
+	path = elf2e32
+	url = https://github.com/fedor4ever/elf2e32
